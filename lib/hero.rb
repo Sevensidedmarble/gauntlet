@@ -1,4 +1,4 @@
-class Player
+class Hero
   attr_accessor :name, :max_hit_points, :hit_points
   attr_accessor :x, :y # where is the player located
 

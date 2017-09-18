@@ -1,5 +1,5 @@
 require 'game'
-require 'player'
+require 'heroes'
 
 # begin the main loop
 Game.new
