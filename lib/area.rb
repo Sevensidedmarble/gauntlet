@@ -1,5 +1,5 @@
-require 'position'
-require 'tiles'
+require_relative 'position'
+require_relative 'tiles'
 
 # An area is a collection of Positions. A position is a flyweight used as a reference to a tile.
 class Area

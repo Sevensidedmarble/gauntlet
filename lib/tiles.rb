@@ -1,4 +1,4 @@
-require 'tile'
+require_relative 'tile'
 
 module Tiles
   FLOOR = Tile.new("Floor", ".", true)

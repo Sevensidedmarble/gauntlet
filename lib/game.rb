@@ -1,6 +1,8 @@
-require 'input'
-require 'hero'
-require 'scheduler'
+require_relative 'input'
+require_relative 'hero'
+require_relative 'scheduler'
+require_relative 'area'
+require_relative 'party'
 
 class Game
   # the main game instance.

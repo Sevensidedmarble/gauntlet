@@ -1,5 +1,5 @@
-require 'inventory'
-require 'game_object'
+require_relative 'inventory'
+require_relative 'game_object'
 
 # Actors comprise both NPCs and Heroes. They're not just defined as objects that move, as other gameobjects can move too.
 #

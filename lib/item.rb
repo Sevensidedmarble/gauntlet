@@ -1,4 +1,4 @@
-require 'game_object'
+require_relative 'game_object'
 
 class Item < GameObject
 

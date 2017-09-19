@@ -1,5 +1,5 @@
-require 'actor'
-require 'player_controller'
+require_relative 'actor'
+require_relative 'player_controller'
 
 # Heroes are the party members. Actors that the player controls.
 class Hero < Actor
