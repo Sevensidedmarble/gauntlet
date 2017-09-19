@@ -27,6 +27,10 @@ class Area
     map
   end
 
+  def get_pos(x, y)
+    @map[x][y]
+  end
+
   def add (x, y, pos)
     @map[x][y] = pos
   end

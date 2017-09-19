@@ -1,12 +1,16 @@
-class Hero
-  attr_accessor :name, :max_hit_points, :hit_points
-  attr_accessor :x, :y # where is the player located
+require 'actor'
+require 'player_controller'
 
-  def initialize(game)
-    @game = game
-    @name = 'Marble'
+# Heroes are the party members. Actors that the player controls.
+class Hero < Actor
+  attr_accessor :name, :max_hit_points, :hit_points, :dead
+
+
+  def initialize(name, area, pos)
+    super(name, area, pos)
     @max_hit_points = 24
     @hit_points = @max_hit_points
+    @dead = false
   end
 
   def hit(dmg)
@@ -14,15 +18,11 @@ class Hero
     check_if_dead
   end
 
-  def alive?
-    check_if_dead
-  end
-
-  def our_turn?
-
+  def dead?
+    @dead = check_if_dead
   end
 
   def check_if_dead
-    @game.stop if @hit_points < 1
+    true if @hit_points < 1
   end
 end
