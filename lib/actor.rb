@@ -2,6 +2,7 @@ require_relative 'inventory'
 require_relative 'game_object'
 require_relative 'stats'
 require_relative 'actor'
+require_relative 'actor_prototypes'
 
 # Actors comprise both NPCs and Heroes. They're not just defined as objects that move, as other gameobjects can move too.
 #
@@ -24,6 +25,12 @@ class Actor < GameObject
     check_if_dead
   end
 
+  def draw(output)
+    # char = @char.nil? ? @name.chr : @char
+    char = @name.chr
+    output.draw_string(char, pos.x*12, pos.y*12, 1)
+  end
+
   def dead?
     @dead = check_if_dead
   end
@@ -31,46 +38,13 @@ class Actor < GameObject
   def check_if_dead
     true if @hit_points < 1
   end
-end
 
-# A list of the Actors that can be instantiated (Monsters or NPCs, the latter are Actors which are hostile by default)
-#
-# Right now this is hardcoded, but it should be serialized from outside data (json). The outside file should get loaded
-# during game initialization.
-module ActorPrototypes
-  def get(symbol)
-    begin
-      list[symbol]
-    rescue => e
-      $log.error("ActorPrototypes attempted to get a prototype that didn't exist. Symbol: #{symbol}")
-      $log.error(e.class.name)
-      $log.error(e.message)
-      $log.error(e.backtrace)
-      list[:default]
-    end
-  end
-
-  list = Hash.new
-  list[:default] = { :name => "Default Problem Man", :hp => "999", :stats => Stats.new }
-  list[:orc] = { :name => "Orc Warrior", :hp => "24", :stats => Stats.new}
-end
-
-# Actors is a singleton container for the actors in a scene, and also has helpful factory methods for creating Actors.
-class Actors
-  attr_accessor :list
-
-  include ActorPrototypes
-
-  def initialize
-    @list = Array.new
-  end
-
-  # Pass in the symbol in the EnemyP area and position to spawn a particular Actor
-  def spawn(symbol, area, pos)
-    proto       = EnemyPrototypes.get(symbol)
-    actor       = Actor.new(proto[:name], area, pos)
-    actor.hp    = proto[:hp]
-    actor.stats = proto[:stats]
+  def set_position(x, y)
+    # Remove the actor from the old Position.
+    @pos.remove_actor_here unless @pos.nil?
+    @pos = @area.get_pos(x, y)
+    # Add the actor to the new Position.
+    @pos.put_actor_here(self)
   end
 end
 

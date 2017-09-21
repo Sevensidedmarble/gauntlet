@@ -5,7 +5,7 @@ class GameObject
   def initialize(name, area, pos)
     @name = name
     @area = area
-    @pos = pos
+    set_position(pos.x, pos.y)
   end
 
   # Set position changes the @pos variable and nothing else. Please move things by calling it's move methods instead.

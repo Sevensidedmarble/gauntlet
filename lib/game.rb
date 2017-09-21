@@ -29,8 +29,12 @@ class Game
     @input = Input.new(@window_controller)
     @output = Output.new( @window_controller)
     @current_area = Area.new(30,40)
-    @main_character = Hero.new("Marble", @current_area, @current_area.get_pos(1,1))
-    @party = Party.new(5)
+    party_members = [Hero.new("Marble", @current_area, @current_area.get_pos(5,5)),
+                     Hero.new("Imoen", @current_area, @current_area.get_pos(5,6)),
+                     Hero.new("Edwin", @current_area, @current_area.get_pos(5,7)),
+                     Hero.new("Aerie", @current_area, @current_area.get_pos(5,8)),
+                     Hero.new("Mazzy", @current_area, @current_area.get_pos(5,9))]
+    @party = Party.new(5, party_members)
     @scheduler = Scheduler.new
 
     # begin the game loop after state is created

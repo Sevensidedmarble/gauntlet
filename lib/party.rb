@@ -2,8 +2,11 @@
 class Party
   attr_accessor :list
 
-  def initialize(size)
+  def initialize(size, actors)
     @list = Array.new(size)
+    actors.each do |actor|
+      add(actor)
+    end
   end
 
   def add(actor)
