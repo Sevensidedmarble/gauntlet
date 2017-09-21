@@ -15,6 +15,10 @@ class Position
     @items_here = Inventory.new
   end
 
+  def char
+    @tile_def.char
+  end
+
   def is_not_occupied?
     !@occupied
   end

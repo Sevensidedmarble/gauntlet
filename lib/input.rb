@@ -9,7 +9,7 @@ class Input
     @window_controller = window_controller
     # Here we set the callback in the WindowController to call our key_down method when the WindowController gets key_down
     # information. This pattern of callbacks should allow different IO systems to be swapped in with minimal work.
-    @window_controller.set_input_callback(:key_down, method(:key_down))
+    @window_controller.set_io_callback(:key_down, method(:key_down))
   end
 
   def getting_input
@@ -19,9 +19,9 @@ class Input
   end
 
   def key_down(key)
+    puts key
     if key == :escape
-      close
-      puts 'wat'
+      @window_controller.exit
     end
   end
 end

@@ -38,12 +38,13 @@ class Game
   end
 
   def draw
-    # @output.draw_string("Beginning turn #{@turn_count}.", 1, 1, 1)
+    @output.draw_string("Beginning turn #{@turn_count}.", 1, 1, 1)
+    @output.draw_string("FPS: #{@window_controller.fps}", @window_controller.width - 65, @window_controller.height - 18, 1)
+    @current_area.draw(@output)
   end
 
   def update
     @turn_count += 1
-    # @input.getting_input
   end
 
   def is_party_dead?

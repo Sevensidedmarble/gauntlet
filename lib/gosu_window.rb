@@ -3,6 +3,7 @@ require 'gosu'
 # The Window is the graphical object that handles the I/O of our game. Input and Output goes through the window.
 # Here we are using Gosu but hopefully that will be easy to change to something else if you want.
 class GosuWindow < Gosu::Window
+
   def initialize(title, x, y, callbacks)
     super x, y
     self.caption = title
@@ -10,21 +11,27 @@ class GosuWindow < Gosu::Window
     @main_font = Gosu::Font.new(20)
   end
 
-  ## BEGIN PUBLIC API
-  ## PUBLIC API
-  # def key_down(key)
-  #   @window.key_down(key)
-  # end
-  ## END PUBLIC API
-
   def start
     show
   end
 
+  def exit
+    puts 'quitting'
+    close!
+  end
+
+  def fps
+    Gosu::fps
+  end
+
+  # NOTE: Gosu
+  # draw is the name Gosu will look for as its render function.
   def draw
     @callbacks[:draw].call
   end
 
+  # NOTE: Gosu
+  # update is the name Gosu will look for as its update function.
   def update
     @callbacks[:update].call
   end

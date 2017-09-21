@@ -19,12 +19,30 @@ class Area
   def make_basic_area
     map = Array.new(@width) {Array.new(@height)}
     # Make entire area floor as a default state
-    map.each_index do |x|
-      map[x].each_index do |y|
-        map[x][y] = Position.new(x, y, Tiles::FLOOR)
-      end
+    # map.each_index do |x|
+    #   map[x].each_index do |y|
+    #     map[x][y] = Position.new(x, y, Tiles::FLOOR)
+    #   end
+    # end
+    each_position do |x, y|
+      map[x][y] = Position.new(x, y, Tiles::FLOOR)
     end
     map
+  end
+
+  def each_position
+    @map.each_index do |x|
+      @map[x].each_index do |y|
+        yield x, y
+      end
+    end
+  end
+
+  def draw(output)
+    each_position do |x, y|
+      pos = @map[x][y]
+      output.draw_string(pos.char, x*12, y*12, 1)
+    end
   end
 
   def get_pos(x, y)
