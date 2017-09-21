@@ -16,7 +16,6 @@ class GosuWindow < Gosu::Window
   end
 
   def exit
-    puts 'quitting'
     close!
   end
 

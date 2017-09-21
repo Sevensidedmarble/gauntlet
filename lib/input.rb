@@ -20,8 +20,9 @@ class Input
 
   def key_down(key)
     puts key
-    if key == :escape
+    if key.include?(:escape)
       @window_controller.exit
+      puts 'Closing window.'
     end
   end
 end
